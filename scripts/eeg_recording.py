@@ -7,10 +7,12 @@ import sys
 
 class EEGRecorder:
     def __init__(self, duration, filename):
+        self.date_str = time.strftime("%Y%m%d")
         self.duration = duration
-        self.filename = filename
+        self.filename = f"data/cualitative/cual_survey_{filename}_{self.date_str}.csv"
         self.recording_start_time = None # None elimina ambiguedad. NO HA INICIADO.
         self.is_recording = False
+        self.additional_sensors = False
     
     # 1. CONFIRMAR PAIRING CON MUSE
     def confirm_pairing(self):
@@ -27,26 +29,27 @@ class EEGRecorder:
         mi_muse = self.confirm_pairing()
         if mi_muse:
             print("ACTIVANDO GIROSCOPIO...")
-            return True
+            self.additional_sensors = True
         
         print("No se encontró ninguna Muse, activación de giroscopio fallida.")
-        return False
+        self.additional_sensors = False
     
     
-    def start_recording(self, view_stream=False):
+    def start_recording(self, view_stream=False, ):
         mi_muse = self.confirm_pairing()
         if mi_muse:
             print(f"******** Recording Started for {self.duration} seconds ********")
             # Variables de update de recordign #
             self.recording_start_time = time.time()
             if view_stream:
-                muse.stream()
+                muse.stream(
+                    ppg_enabled=True,
+                    acc_enabled=True,
+                    gyro_enabled=True,
+                )
             self.is_recording = True
             record(
                 duration=self.duration,
-                ppg_enabled=True,
-                acc_enabled=True,
-                gyro_enabled=True,
                 filename=self.filename
             )
             self.is_recording = False
