@@ -7,14 +7,14 @@ import time
 
 
 def main():
-    my_survey = CualitativeSurvey(filename="prueba_5_estudiando_babyblue", p_id="001")
-    my_survey.init_csv()
-    responses = my_survey.ask_survey()
-    my_survey.save_survey_response(responses)
+    # my_survey = CualitativeSurvey(filename="prueba_6_baseline_expoinges", p_id="001")
+    # my_survey.init_csv()
+    # responses = my_survey.ask_survey()
+    # my_survey.save_survey_response(responses)
 
-    print("Survey Cualitativa Finalizada.\n")
+    # print("Survey Cualitativa Finalizada.\n")
 
-    my_eeg = EEGRecorder(duration=20, filename="prueba_5_eeg_estudiandobabyblue", r_id="001")
+    my_eeg = EEGRecorder(duration=20, filename="prueba_9_eeg_visualfeedback_expoinges", r_id="001")
     
     # Iniciar stream automáticamente
     if my_eeg.start_stream():
