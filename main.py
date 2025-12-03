@@ -14,7 +14,7 @@ def main():
 
     print("Survey Cualitativa Finalizada.\n")
 
-    my_eeg = EEGRecorder(duration=20, filename="prueba_10_eeg_baseline_yoga", r_id="001")
+    my_eeg = EEGRecorder(duration=20, filename="prueba_12_eeg_baseline_estrés", r_id="001")
     
     # Iniciar stream automáticamente
     if my_eeg.start_stream():
